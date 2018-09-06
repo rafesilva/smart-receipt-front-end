@@ -3,11 +3,9 @@ import { AppRegistry, ActivityIndicator, StyleSheet, Text, View, TouchableOpacit
 import { ImagePicker, Permissions } from "expo";
 import axios from 'axios';
 import FormData from 'form-data'
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Font } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
 
-// import CameraRollPicker from 'react-native-camera-roll-picker';
-// import styles from './App.css';
 export default class App extends React.Component {
     
   constructor() {
@@ -23,6 +21,7 @@ export default class App extends React.Component {
       indicator: false,
 
     }
+
   }; 
 
   async componentDidMount() {
@@ -42,7 +41,7 @@ export default class App extends React.Component {
     let data = new FormData();
     let urlapi = 'http://192.168.1.186:8000/file/analysis/'
     data.append('file', this.state.imageBase64, 'image/jpeg')
-    data.append('remark', this.state.text, 'text')
+    data.append('query', this.state.text, 'text')
 
     axios.post(urlapi, data, {
       headers: {
@@ -106,6 +105,7 @@ export default class App extends React.Component {
 
     return (
        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+
         <View style={styles.main}> 
         
 
@@ -118,15 +118,14 @@ export default class App extends React.Component {
                           this.state.image ? (
                           <Image style={styles.image} source={{uri: image }}/>) :
                             <View style={styles.titleContainer}> 
-                            
 
                           { 
                             this.state.fontLoaded ? ( <Text style={styles.title}> Smart Receipt </Text> ) : null 
                           }
-                            <Ionicons name={"md-bulb"} style={styles.BulbIcon}/>
-                            </View>
-                          } 
+                            <Ionicons name={"md-bulb"} style={styles.BulbIcon}/> 
                 </View>
+                          } 
+            </View>
 
                  {  
                   (this.state.indicator ) ? 
@@ -168,7 +167,7 @@ export default class App extends React.Component {
                                 this.state.fontLoaded ? ( <Text style={[styles.countText]}> Take a proto </Text> ) : null
                               }
 
-                            </TouchableOpacity>
+                          </TouchableOpacity>
                           ) 
                         }
                            
@@ -302,14 +301,17 @@ const styles = StyleSheet.create({
 
   },
     BulbIcon: {
+      position: 'absolute',
+      left:250,
       flex:1,
       flexWrap:'wrap',
       flexDirection:'row',
       alignItems:'flex-start',
-      marginTop:25,
+      marginTop:40,
       maxWidth:32,
-      fontSize:28,
-      color:'#e6f71f',
+      fontSize:32,
+      transform: [{ rotate: '35deg'}],
+      color:'#f2be1a',
 
   },
     title : {
