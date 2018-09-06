@@ -39,7 +39,7 @@ export default class App extends React.Component {
     console.log('I will send it', this.state.image);
     
     let data = new FormData();
-    let urlapi = 'http://192.168.1.186:8000/file/analysis/'
+    let urlapi = 'http://10.0.0.4:8000/file/analysis/'
     data.append('file', this.state.imageBase64, 'image/jpeg')
     data.append('query', this.state.text, 'text')
 
