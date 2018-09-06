@@ -1,4 +1,5 @@
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
+Working with an Api built in Django.
 
 To execute this project you will need to:
 - Have the Expo Tools instaled: https://expo.io/tools
